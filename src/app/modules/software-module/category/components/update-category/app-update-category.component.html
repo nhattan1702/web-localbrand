@@ -1,0 +1,20 @@
+<app-modal-wrapper #addCategoryModalWrapper size="modal-md" title="Thêm danh mục mới">
+    <div class="modal-body" id="add-product-attribute-modal">
+        <div class="row">
+            <div class="col-12">
+                <label for="add_category_name">Tên danh mục<span class="text-red">*</span></label>
+                <input  [(ngModel)]="categoryModel.name" class="form-control" id="add_category_name"
+                       placeholder="Nhập mã"
+                       type="text"/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button (click)="addCategoryModal.hide()" class="btn btn-default" type="button">
+            <i class="fas fa-times mr-1"></i>Đóng
+        </button>
+        <button (click)="saveCategory()" class="btn btn-primary" type="button">
+            <i class="fas fa-save mr-1"></i>Lưu
+        </button>
+    </div>
+</app-modal-wrapper>

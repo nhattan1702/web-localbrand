@@ -1,0 +1,67 @@
+<!-- Content Header (Page header) -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/dashboard" class="text-decoration-none">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Quản lý sản phẩm</li>
+  </ol>
+</nav>
+<h2 class="ps-3">Danh mục</h2>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 px-0">
+        <div class="card">
+          <!-- /.card-header -->
+          <div class="card-body">
+            <app-data-table (changeEvent)="dataTableChange($event)" [columnNumber]="4" [dataTable]="search">
+              <div class="block-buttons-right d-flex justify-content-center justify-content-md-end">
+                <button
+                  (click)="addCategoryComponent.show()"
+                  class="btn btn-primary"
+                >
+                  Thêm
+                </button>
+              </div>
+              <thead>
+              <tr>
+                <th>Tên danh mục</th>
+                <th style="width: 0"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let e of search.result">
+                <td>{{e.name}}</td>
+                <td>
+                  <app-dropdown-menu>
+                      <span (click)="updateCategoryComponent.show(e.id)" class="dropdown-item text-cyan">
+                        <i class="far fa-edit"></i>
+                        Sửa
+                      </span>
+                    <span (click)="deleteCategory(e.id)" class="dropdown-item text-red">
+                        <i class="far fa-trash-alt mr-1"></i>
+                        Xóa
+                      </span>
+                  </app-dropdown-menu>
+                </td>
+              </tr>
+              </tbody>
+            </app-data-table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <app-add-category #addCategoryComponent
+                             (saveCompleteEvent)="saveCategoryCompleteEvent()"></app-add-category>
+  <app-update-category #updateCategoryComponent
+                    (saveCompleteEvent)="saveCategoryCompleteEvent()"></app-update-category>
+  <!-- /.modal-add -->
+
+</section>
+<!-- /.content -->
